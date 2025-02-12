@@ -1,28 +1,14 @@
-name: Branch-Specific-workflow
+name: Branch-Specific-Workflow
 
 on:
   workflow_dispatch:
-
+ 
 jobs:
   deploy:
     runs-on:
       group: cvs-linux-self-hosted
-    outputs:
-      should-run: ${{ steps.branch-check.outputs.should-run }}
+    env:
+      PUSH_PACKAGES: ${{ github.ref != 'refs/heads/testing' }}
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-
-      - name: Set output if on 'testing' branch
-        id: branch-check
-        run: |
-          echo "Checking if the current branch is 'testing'"
-          if [ "${GITHUB_REF}" == "refs/heads/testing" ]; then
-            echo "should-run=true" >> $GITHUB_ENV  # Set environment variable to true
-            echo "Setting should-run to true"
-          else
-            echo "should-run=false" >> $GITHUB_ENV  # Set environment variable to false
-            echo "This workflow should only run on the 'testing' branch."
-            exit 1  # Exit with error if not on the 'testing' branch
-          fi
-
+      - uses: actions/checkout@v2
+      - run: echo "Running tests"
