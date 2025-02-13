@@ -13,17 +13,18 @@ jobs:
           git clone https://github.com/poojithareddypuli/Demo.git
           cd Demo
           git checkout test
-          echo "Running tests"
+          echo "Running tests or build"
 
       - name: Check if branch is 'test'
         id: check_branch
         run: |
           echo "Checking if the current branch is 'test'..."
-          if ($env:GITHUB_REF -eq 'refs/heads/test') {
+          if [ "$GITHUB_REF" == "refs/heads/test" ]; then
             echo "This workflow should only run on the 'test' branch."
             exit 1
-          } else {
-            echo "Branch is 'test'. Proceeding with the workflow." }
+          else
+            echo "Branch is 'test'. Proceeding with the workflow."
+          fi
 
       - name: Run build steps
         if: steps.check_branch.outcome == 'success'
