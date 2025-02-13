@@ -15,12 +15,12 @@ jobs:
           git checkout test
           echo "Running tests"
 
-      - name: Check if branch is 'testing'
+      - name: Check if branch is 'test'
         id: check_branch
         run: |
           echo "Checking if the current branch is 'test'..."
           if ($env:GITHUB_REF -eq 'refs/heads/test') {
-            echo "This workflow should only run on the 'testing' branch."
+            echo "This workflow should only run on the 'test' branch."
             exit 1
           } else {
             echo "Branch is 'test'. Proceeding with the workflow." }
