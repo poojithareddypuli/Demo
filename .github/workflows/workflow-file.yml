@@ -15,7 +15,7 @@ jobs:
         id: check_branch
         run: |
           echo "Checking if the current branch is 'testing'..."
-          if ($env:GITHUB_REF -ne 'refs/heads/${{ github.event.inputs.branch }}') {
+          if ($env:GITHUB_REF -ne 'refs/heads/main') {
             echo "This workflow should only run on the 'testing' branch."
             exit 1
           } else {
