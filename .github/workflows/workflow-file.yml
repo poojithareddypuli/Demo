@@ -1,0 +1,26 @@
+name: Testing-Branch-Workflow
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Check if branch is 'testing'
+        id: check_branch
+        run: |
+          echo "Checking if the current branch is 'testing'..."
+          if ($env:GITHUB_REF -ne 'refs/heads/${{ github.event.inputs.branch }}') {
+            echo "This workflow should only run on the 'testing' branch."
+            exit 1
+          } else {
+            echo "Branch is 'testing'. Proceeding with the workflow."
+
+      - name: Run build steps
+        if: steps.check_branch.outcome == 'success'
+        run: echo "Running the build steps for the 'testing' branch..."
