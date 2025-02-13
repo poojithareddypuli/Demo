@@ -19,7 +19,7 @@ jobs:
         id: check_branch
         run: |
           echo "Checking if the current branch is 'main'..."
-          if ($env:GITHUB_REF -eq 'refs/heads/test') {
+          if ($env:GITHUB_REF -ne 'refs/heads/test') {
             echo "This workflow should only run on the 'main' branch."
             exit 1
           } else {
