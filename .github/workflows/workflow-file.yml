@@ -12,6 +12,8 @@ jobs:
         run: |
           git clone https://github.com/poojithareddypuli/Demo.git
           cd Demo
+          git checkout test
+          echo "Running tests"
 
       - name: Check if branch is 'testing'
         id: check_branch
