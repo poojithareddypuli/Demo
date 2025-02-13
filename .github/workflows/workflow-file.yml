@@ -9,7 +9,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: poojithareddypuli/checkout@main
+        uses: poojithareddypuli/checkout@v3
 
       - name: Check if branch is 'testing'
         id: check_branch
