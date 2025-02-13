@@ -9,7 +9,9 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        run: |
+          git clone https://github.com/poojithareddypuli/Demo.git
+          cd Demo
 
       - name: Check if branch is 'testing'
         id: check_branch
