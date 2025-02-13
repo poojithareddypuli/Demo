@@ -15,15 +15,16 @@ jobs:
           git checkout main
           echo "Running tests or build"
 
-      - name: Check if branch is 'testing'
+      - name: Check if branch is 'main'
         id: check_branch
         run: |
           echo "Checking if the current branch is 'main'..."
-          if ($env:GITHUB_REF -ne 'refs/heads/main') {
+          if [ "$GITHUB_REF" != "refs/heads/main" ]; then
             echo "This workflow should only run on the 'main' branch."
             exit 1
-          } else {
-            echo "Branch is 'main'. Proceeding with the workflow." }
+          else
+            echo "Branch is 'main'. Proceeding with the workflow."
+          fi
 
       - name: Run build steps
         if: steps.check_branch.outcome == 'success'
