@@ -21,7 +21,7 @@ jobs:
             echo "This workflow should only run on the 'testing' branch."
             exit 1
           } else {
-            echo "Branch is 'testing'. Proceeding with the workflow."
+            echo "Branch is 'testing'. Proceeding with the workflow." }
 
       - name: Run build steps
         if: steps.check_branch.outcome == 'success'
