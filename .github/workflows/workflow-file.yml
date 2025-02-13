@@ -17,6 +17,7 @@ jobs:
 
       - name: Check if branch is 'main'
         id: check_branch
+        shell: pwsh
         run: |
           echo "Checking if the current branch is 'main'..."
           if [ "$GITHUB_REF" != "refs/heads/main" ]; then
